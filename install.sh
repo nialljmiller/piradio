@@ -341,6 +341,9 @@ Useful commands:
   sudo systemctl restart ${SERVICE_NAME}
   sudo systemctl stop ${SERVICE_NAME}
 
+Configure interactively from this repo:
+  sudo ./scripts/configure_piradio.sh
+
 Media directory:
   ${MEDIA_DIR}
 

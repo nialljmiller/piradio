@@ -56,6 +56,21 @@ Announcement clips go in:
 
 The installer creates demo audio only so a fresh installation can start immediately. Replace the demo files with your own music and announcements.
 
+## Configuration wizard
+
+Run the interactive configuration wizard from the repo:
+
+    sudo ./scripts/configure_piradio.sh
+
+The wizard lets you set:
+
+- FM frequency
+- shuffle on/off
+- repeat forever on/off
+- stereo playback on/off
+
+It backs up the old config before writing a new one and can restart the radio service for you.
+
 ## Configuration
 
 Edit:

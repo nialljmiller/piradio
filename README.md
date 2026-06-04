@@ -81,7 +81,7 @@ Restart after changing config:
 | Original recovered Arch Linux ARM image | Known working | This is where the recovered setup came from. |
 | Raspberry Pi OS Lite 32-bit | Primary target | Recommended fresh-install target. |
 | Raspberry Pi OS Desktop 32-bit | Likely | Should work, but Lite is preferred for a headless radio. |
-| Raspberry Pi OS 64-bit | Maybe | The recovered `pifm` binary is 32-bit ARM, so 64-bit installs may need compatibility libraries or may fail. |
+| Raspberry Pi OS 64-bit / Debian Bookworm aarch64 | Tested to start service | Installer adds the required `armhf` runtime for the recovered 32-bit `pifm` binary. RF output still needs receiver confirmation. |
 | Ubuntu Server 32-bit ARM | Maybe | Not the main target; package names and `pifm` compatibility may differ. |
 | Ubuntu Server 64-bit ARM | Not recommended | Same 32-bit `pifm` issue, plus more distro variation. |
 | Alpine / DietPi / LibreELEC / RetroPie / other appliance OSes | Unsupported | May work with manual changes, but the installer is not designed for them. |

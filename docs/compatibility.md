@@ -39,7 +39,7 @@ Other Raspberry Pi Linux distributions may have different package names, differe
 | Recovered Arch Linux ARM image | Known working |
 | Raspberry Pi OS Lite 32-bit | Primary target |
 | Raspberry Pi OS Desktop 32-bit | Likely |
-| Raspberry Pi OS 64-bit | Maybe |
+| Raspberry Pi OS 64-bit / Debian Bookworm aarch64 | Tested to start service |
 | Ubuntu Server 32-bit ARM | Maybe |
 | Ubuntu Server 64-bit ARM | Not recommended |
 | Alpine Linux | Unsupported |

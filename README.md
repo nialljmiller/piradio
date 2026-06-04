@@ -2,40 +2,103 @@
 
 Headless Raspberry Pi FM radio setup.
 
-This repository preserves a working Raspberry Pi FM radio system recovered from an old Raspberry Pi image.
+This project installs a recovered Raspberry Pi FM radio system that starts automatically on boot. It runs `PirateRadio.py`, decodes music and announcement audio with `ffmpeg`, and pipes raw audio into `pifm` for FM transmission.
 
-## What it does
+## Quick install
 
-The Pi boots headlessly, starts a systemd service, runs `PirateRadio.py`, decodes audio with `ffmpeg`, and pipes raw audio into `pifm` for FM transmission.
+Recommended target:
 
-## Original boot chain
+- Raspberry Pi OS Lite, 32-bit
+- Raspberry Pi Zero / Zero W / Zero 2 W / Pi 1 / Pi 2 / Pi 3 / Pi 4
+- SSH enabled
+- Network access during install
 
-    /etc/systemd/system/pirateradio.service
-        -> /root/PirateRadio.py
-            -> /root/pifm
-            -> /pirateradio
+On the Raspberry Pi:
 
-## Original runtime paths
+    sudo apt update
+    sudo apt install -y git
+    git clone https://github.com/nialljmiller/piradio.git
+    cd piradio
+    sudo ./install.sh
 
-    /root/PirateRadio.py
-    /root/pifm
-    /pirateradio/pirateradio.config
-    /pirateradio/song_attributes.csv
-    /pirateradio/waiting.mp3
-    /pirateradio/announce/
+The installer will:
 
-## Important directories in this repo
+- install runtime dependencies
+- install `PirateRadio.py`
+- install the recovered `pifm` binary
+- create `/pirateradio`
+- create `/pirateradio/pirateradio.config`
+- create demo audio if no audio exists yet
+- install and enable `pirateradio.service`
+- start the radio service
 
-    src/                 recovered PirateRadio.py
-    legacy/root/         recovered pifm binary
-    legacy/systemd/      recovered systemd service
-    config/              example config
-    scripts/             helper tools for checking/scoring/ranking music
-    data/                examples and recovered file lists
-    docs/                recovery notes and hashes
+Check status:
 
-## Current status
+    sudo systemctl status pirateradio.service
 
-This is a faithful source capture plus a legacy-layout installer. It is not yet a polished modern installer.
+Follow logs:
 
-Do not run `install_legacy_layout.sh` on your laptop. It is intended for a Raspberry Pi target system.
+    sudo journalctl -u pirateradio.service -f
+
+Run diagnostics:
+
+    sudo ./scripts/piradio_doctor.sh
+
+## Adding music
+
+Songs go directly in:
+
+    /pirateradio
+
+Announcement clips go in:
+
+    /pirateradio/announce
+
+The installer creates demo audio only so a fresh installation can start immediately. Replace the demo files with your own music and announcements.
+
+## Configuration
+
+Edit:
+
+    sudo nano /pirateradio/pirateradio.config
+
+Example:
+
+    [pirateradio]
+    frequency = 101.1
+    shuffle = False
+    repeat_all = True
+    stereo_playback = True
+
+Restart after changing config:
+
+    sudo systemctl restart pirateradio.service
+
+## Compatibility
+
+| Platform | Status | Notes |
+|---|---:|---|
+| Original recovered Arch Linux ARM image | Known working | This is where the recovered setup came from. |
+| Raspberry Pi OS Lite 32-bit | Primary target | Recommended fresh-install target. |
+| Raspberry Pi OS Desktop 32-bit | Likely | Should work, but Lite is preferred for a headless radio. |
+| Raspberry Pi OS 64-bit | Maybe | The recovered `pifm` binary is 32-bit ARM, so 64-bit installs may need compatibility libraries or may fail. |
+| Ubuntu Server 32-bit ARM | Maybe | Not the main target; package names and `pifm` compatibility may differ. |
+| Ubuntu Server 64-bit ARM | Not recommended | Same 32-bit `pifm` issue, plus more distro variation. |
+| Alpine / DietPi / LibreELEC / RetroPie / other appliance OSes | Unsupported | May work with manual changes, but the installer is not designed for them. |
+| Raspberry Pi Pico / Pico W | Not supported | Pico boards do not run normal Linux/systemd. |
+
+## Raspberry Pi model compatibility
+
+| Model | Status | Notes |
+|---|---:|---|
+| Raspberry Pi 1 | Likely | Close to the era of the recovered setup. Use 32-bit OS. |
+| Raspberry Pi Zero / Zero W | Likely | Good target for a headless radio. Use 32-bit OS. |
+| Raspberry Pi Zero 2 W | Likely | Good target. Use 32-bit OS first. |
+| Raspberry Pi 2 | Likely | Use 32-bit OS first. |
+| Raspberry Pi 3 / 3B / 3B+ | Likely | Use 32-bit OS first. |
+| Raspberry Pi 4 | Maybe | Likely at the Linux level, but `pifm` hardware behavior needs testing. |
+| Raspberry Pi 5 | Unknown / not recommended yet | Pi 5 hardware differs enough that the recovered `pifm` binary should not be assumed to work. |
+
+## Important note
+
+This project uses FM transmission. Check your local rules before attaching an antenna or transmitting beyond a tiny test range.

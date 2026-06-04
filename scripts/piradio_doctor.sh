@@ -24,6 +24,8 @@ done
 section "Runtime files"
 ls -lah /root/PirateRadio.py /root/pifm 2>/dev/null || true
 file /root/pifm 2>/dev/null || true
+readelf -l /root/pifm 2>/dev/null | grep -i interpreter || true
+ls -lah /lib/ld-linux-armhf.so.3 /lib/arm-linux-gnueabihf/ld-linux-armhf.so.3 2>/dev/null || true
 ldd /root/pifm 2>/dev/null || true
 
 section "Media directory"

@@ -83,18 +83,27 @@ install_packages() {
     if command -v apt-get >/dev/null 2>&1; then
         export DEBIAN_FRONTEND=noninteractive
         apt-get update
-        apt-get install -y python3 ffmpeg alsa-utils file
+        apt-get install -y python3 ffmpeg alsa-utils file binutils
 
-        # Runtime libraries needed by old 32-bit ARM pifm on 32-bit Raspberry Pi OS.
+        # Native runtime libraries.
         apt-get install -y libc6 libstdc++6 libgcc-s1 2>/dev/null || \
         apt-get install -y libc6 libstdc++6 libgcc1 2>/dev/null || true
 
+        # The recovered pifm binary is 32-bit ARM hard-float.
+        # On 64-bit Raspberry Pi OS, install the armhf loader/libs too.
+        if [[ "$(uname -m)" == "aarch64" ]]; then
+            log "Installing armhf runtime for recovered 32-bit pifm binary"
+            dpkg --add-architecture armhf
+            apt-get update
+            apt-get install -y libc6:armhf libstdc++6:armhf libgcc-s1:armhf
+        fi
+
     elif command -v pacman >/dev/null 2>&1; then
-        pacman -Sy --needed --noconfirm python ffmpeg alsa-utils file gcc-libs
+        pacman -Sy --needed --noconfirm python ffmpeg alsa-utils file binutils gcc-libs
 
     else
         warn "No apt-get or pacman found. Skipping package installation."
-        warn "You need python3, ffmpeg, alsa-utils, file, libc, libstdc++, and libgcc."
+        warn "You need python3, ffmpeg, alsa-utils, file, binutils, libc, libstdc++, and libgcc."
     fi
 }
 
@@ -185,6 +194,7 @@ CONFIG
 count_main_audio_files() {
     find "${MEDIA_DIR}" -maxdepth 1 -type f \
         \( -iname '*.mp3' -o -iname '*.wav' -o -iname '*.m4a' -o -iname '*.aac' -o -iname '*.flac' \) \
+        ! -iname 'waiting.mp3' \
         | wc -l
 }
 

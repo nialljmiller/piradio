@@ -1,0 +1,9 @@
+[Unit]
+Description=Pirate Radio
+
+[Service]
+Type=forking
+ExecStart=/root/PirateRadio.py
+
+[Install]
+WantedBy=multi-user.target

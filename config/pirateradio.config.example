@@ -1,0 +1,5 @@
+[pirateradio]
+frequency = 101.1
+shuffle = False
+repeat_all = True
+stereo_playback = True

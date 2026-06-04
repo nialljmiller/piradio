@@ -1,0 +1,29 @@
+# Audio / media library
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flac
+*.opus
+
+# Generated/local radio state
+song_attributes.csv
+song_file_list.json
+audio_check.log
+quarantine/
+FSCK*.REC
+
+# Apple/FAT filesystem junk
+._*
+.Spotlight-V100/
+.Trash-*/
+.TemporaryItems/
+.fseventsd/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Junk
+YTDSetup.exe

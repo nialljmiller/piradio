@@ -2,41 +2,50 @@
 
 ## OS
 
-Original image appears to be Arch Linux ARM.
+The original image appears to be Arch Linux ARM.
 
-Python path:
+Python path on the recovered image:
 
-```text
-/usr/bin/python -> python3
-/usr/bin/python3 -> python3.3
+    /usr/bin/python -> python3
+    /usr/bin/python3 -> python3.3
 
-Boot service
+## Boot service
 
-[Unit]
-Description=Pirate Radio
+Recovered service:
 
-[Service]
-Type=forking
-ExecStart=/root/PirateRadio.py
+    [Unit]
+    Description=Pirate Radio
 
-[Install]
-WantedBy=multi-user.target
+    [Service]
+    Type=forking
+    ExecStart=/root/PirateRadio.py
 
-fstab
+    [Install]
+    WantedBy=multi-user.target
 
-/dev/mmcblk0p1  /boot           vfat    defaults        0       0
-/dev/mmcblk0p3  /pirateradio    vfat    defaults        0       0
+## fstab
 
-Config
+Recovered relevant entries:
 
-[pirateradio]
-frequency = 101.1
-shuffle = False
-repeat_all = True
-stereo_playback = True
+    /dev/mmcblk0p1  /boot           vfat    defaults        0       0
+    /dev/mmcblk0p3  /pirateradio    vfat    defaults        0       0
 
-Core binary
+## Runtime config
 
-pifm is a 32-bit ARM dynamically-linked ELF executable.
+Recovered config:
 
-See source_snapshot.sha256 for hashes of recovered files.
+    [pirateradio]
+    frequency = 101.1
+    shuffle = False
+    repeat_all = True
+    stereo_playback = True
+
+## Core binary
+
+`pifm` is a 32-bit ARM dynamically linked ELF executable.
+
+Known hash:
+
+    860708a8086cee6463495b70b2486a8ffa773a46c0384b81b4d9eda84ab6d1db  pifm
+
+See `docs/source_snapshot.sha256` for the full recovered-source hash list.

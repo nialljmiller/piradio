@@ -134,8 +134,8 @@ Restart after changing config:
 
 | Model | Status | Notes |
 |---|---:|---|
-| Raspberry Pi 1 | Likely | Close to the era of the recovered setup. Use 32-bit OS. |
-| Raspberry Pi Zero / Zero W | Likely | Good target for a headless radio. Use 32-bit OS. |
+| Raspberry Pi 1 | Yes (Tested) | Close to the era of the recovered setup. Use 32-bit OS. |
+| Raspberry Pi Zero / Zero W | Yes (Tested) | Good target for a headless radio. Use 32-bit OS. |
 | Raspberry Pi Zero 2 W | Likely | Good target. Use 32-bit OS first. |
 | Raspberry Pi 2 | Likely | Use 32-bit OS first. |
 | Raspberry Pi 3 / 3B / 3B+ | Likely | Use 32-bit OS first. |

@@ -2,7 +2,35 @@
 
 Headless Raspberry Pi FM radio setup.
 
-This project installs a recovered Raspberry Pi FM radio system that starts automatically on boot. It runs `PirateRadio.py`, decodes music and announcement audio with `ffmpeg`, and pipes raw audio into `pifm` for FM transmission.
+`piradio` is a recovered and modernized Raspberry Pi FM radio project. It installs a headless radio service that starts automatically on boot, decodes music and announcement audio with `ffmpeg`, and pipes raw audio into `pifm` for FM transmission.
+
+The goal is to make an old working Raspberry Pi Pirate Radio setup reproducible on modern Raspberry Pi systems with a one-command installer, systemd service setup, diagnostics, and friendly configuration tools.
+
+## Project status
+
+This project is currently in early public-release preparation.
+
+Working so far:
+
+- recovered original code and service layout
+- one-command installer
+- systemd service installation
+- Raspberry Pi OS / Debian Bookworm aarch64 service startup after installing `armhf` runtime libraries
+- diagnostic script
+- compatibility documentation
+
+Still to confirm:
+
+- actual RF output on a receiver
+- final license status of recovered upstream components
+- broader Raspberry Pi model compatibility
+
+See:
+
+- `NOTICE.md`
+- `docs/rf-safety.md`
+- `docs/compatibility.md`
+- `docs/publication-checklist.md`
 
 ## Quick install
 

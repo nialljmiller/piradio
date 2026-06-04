@@ -1,6 +1,13 @@
-# piradio
+<p align="center">
+  <img src="docs/piradio_badge.svg" alt="PiRadio" width="200"/>
+</p>
 
-Headless Raspberry Pi FM radio setup.
+<h1 align="center">PiRadio</h1>
+
+<p align="center">
+  <strong>Raspberry Pi FM radio project</strong>
+</p>
+
 
 `piradio` is a recovered and modernized Raspberry Pi FM radio project. It installs a headless radio service that starts automatically on boot, decodes music and announcement audio with `ffmpeg`, and pipes raw audio into `pifm` for FM transmission.
 

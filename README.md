@@ -91,6 +91,29 @@ Announcement clips go in:
 
 The installer creates demo audio only so a fresh installation can start immediately. Replace the demo files with your own music and announcements.
 
+## Optional news, weather and morning programming
+
+The optional [internet module](modules/internet/README.md) adds day-part music
+folders, cached spoken news and weather, and automatic music ducking. The base
+radio installation continues to work without it.
+
+News feeds are checked no more than once every three hours. Fresh stories are
+added within the existing daily request and voice allowances; weather and
+announcements retain reserved capacity. Playback favours the least recently
+heard stories with a small weighted shuffle, prevents consecutive repeats, and
+remembers the rotation across weather-only bulletins and restarts. Stories expire
+24 hours after source publication where available. Playback itself makes no
+provider calls.
+
+The sample configuration leaves generation disabled. Providers, credentials,
+voice references and activation must be configured separately. See the module
+instructions for installation, budget limits and source controls.
+
+The music importer supports selecting the main or a day-part folder and saving
+energy/organics scores before a completed file enters rotation. Run
+`scripts/piradio-download` on a configured station, or see the module guide for
+batch import options.
+
 ## Configuration wizard
 
 Run the interactive configuration wizard from the repo:

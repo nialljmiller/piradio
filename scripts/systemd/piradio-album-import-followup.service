@@ -1,0 +1,15 @@
+[Unit]
+Description=Pick up additions after the running pirate radio album batch
+After=network-online.target
+RequiresMountsFor=/pirateradio
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c 'while systemctl is-active --quiet piradio-album-import.service; do sleep 30; done; exec /home/njm/.local/share/piradio-downloader/bin/python /home/njm/piradio/scripts/yt-mp3.py --batch /home/njm/piradio/reports/kester-spach-import-queue.csv --folder main --energy 30 --organics 30 --state /var/lib/piradio-download/batch-progress.json'
+Environment=PYTHONUNBUFFERED=1
+Nice=15
+IOSchedulingClass=idle
+CPUQuota=100%
+MemoryMax=256M
+TimeoutStopSec=30
+KillMode=control-group

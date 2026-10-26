@@ -27,3 +27,13 @@ __pycache__/
 
 # Junk
 YTDSetup.exe
+
+# Device-only reports, backups, generated audio and provider credentials
+reports/
+credentials.env
+.env
+.env.*
+!.env.example
+budget.json
+play-history.json
+catalog.json

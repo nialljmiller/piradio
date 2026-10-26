@@ -1,0 +1,252 @@
+{
+  "enabled": false,
+  "state_dir": "/var/lib/piradio-internet",
+  "feeds": [
+    {
+      "name": "BBC World",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "topics": [
+        "world news"
+      ]
+    },
+    {
+      "name": "WRAL Local",
+      "url": "https://www.wral.com/news/rss/142/",
+      "topics": [
+        "NC Triangle"
+      ]
+    },
+    {
+      "name": "BBC Science",
+      "url": "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
+      "topics": [
+        "science",
+        "astronomy"
+      ]
+    },
+    {
+      "name": "BBC Technology",
+      "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+      "topics": [
+        "technology"
+      ]
+    },
+    {
+      "name": "NASA",
+      "url": "https://www.nasa.gov/feed/",
+      "topics": [
+        "astronomy"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "name": "world news",
+      "keywords": []
+    },
+    {
+      "name": "NC Triangle",
+      "keywords": [
+        "Raleigh",
+        "Durham",
+        "Chapel Hill",
+        "Cary",
+        "Triangle",
+        "Wake County"
+      ]
+    },
+    {
+      "name": "science",
+      "keywords": [
+        "science",
+        "research",
+        "discovery"
+      ]
+    },
+    {
+      "name": "technology",
+      "keywords": [
+        "technology",
+        "computing",
+        "AI",
+        "engineering"
+      ]
+    },
+    {
+      "name": "astronomy",
+      "keywords": [
+        "astronomy",
+        "space",
+        "NASA",
+        "ESA",
+        "JWST",
+        "telescope",
+        "exoplanet",
+        "galaxy",
+        "cosmology"
+      ]
+    },
+    {
+      "name": "weather",
+      "keywords": [
+        "forecast",
+        "weather",
+        "rain",
+        "storm"
+      ]
+    }
+  ],
+  "text_model": "gemini-3.5-flash-lite",
+  "voice_model": "gemini-3.8-flash-lite-tts",
+  "voice": "Algenib",
+  "voice_style": "Voice reference: Tom Kenny performing Patchy the Pirate in SpongeBob. Aim as closely as possible for that bright, nasal, scratchy, raspy, shouty live-action cartoon-pirate delivery: exaggerated pirate vowels, elastic comic pitch, barking emphases and enthusiastic ARRRs. Rough, projected and theatrical; not soft, Irish-accented or a deep smooth narrator. Perform the script verbatim as Reginald Radio on nill FM; never claim to be the actor or character.",
+  "interval_seconds": 1200,
+  "repeat_after_seconds": 1200,
+  "news_ttl_seconds": 21600,
+  "max_clip_seconds": 60,
+  "max_text_calls_per_day": 17,
+  "max_voice_calls_per_day": 24,
+  "max_text_tokens_per_day": 160000,
+  "max_voice_seconds_per_day": 1440,
+  "weather": {
+    "enabled": true,
+    "latitude": 35.7796,
+    "longitude": -78.6382,
+    "name": "Raleigh and the NC Triangle"
+  },
+  "host_name": "Reginald Radio",
+  "station_name": "nill FM",
+  "preferred_news_sources": [
+    "bbc.com",
+    "bbc.co.uk",
+    "wral.com",
+    "nasa.gov",
+    "esa.int",
+    "weather.gov"
+  ],
+  "banned_news_sources": [],
+  "generation_interval_seconds": 10800,
+  "max_repeats_per_news_recording": 17,
+  "music_duck_gain": 0.08,
+  "duck_fade_seconds": 0.3,
+  "voice_provider": "fish",
+  "fish_reference_audio": "/var/lib/piradio-internet/reference/pirate.wav",
+  "fish_reference_text": "Arrr, that last song hit harder than a cannonball to a pirate ship! Ready yer ears for more treasure, ye scallywags!",
+  "segmented_bulletins": true,
+  "max_bulletin_seconds": 180,
+  "news_generation_interval_seconds": 10800,
+  "weather_ttl_seconds": 10800,
+  "connectors": {
+    "intro": [
+      "Ahoy! Reginald Radio here aboard {station_name}, me hearties!",
+      "Arrr! This be {host_name}, bringing ye the latest on {station_name}.",
+      "All hands on deck! {host_name} here with {station_name}."
+    ],
+    "weather": [
+      "Batten down the hatches! Here comes yer local weather.",
+      "First, a look at the skies over the Triangle, me hearties.",
+      "Arrr, let us see what the weather has in store."
+    ],
+    "news": [
+      "Now for the news from beyond the ship, me hearties.",
+      "Unroll the charts! Here be the latest news.",
+      "Keep yer ears sharp, crew! Here comes the news."
+    ],
+    "outro": [
+      "That be yer update, me hearties. Back to the music!",
+      "Arrr, enough from me! Let the tunes roll on.",
+      "Keep a weather eye out, crew. On with the music!"
+    ]
+  },
+  "first_bulletin_delay_seconds": 30,
+  "text_failure_fallback": true,
+  "fish_speech_gain": 1.25,
+  "news_topic_priorities": {
+    "NC Triangle": 90,
+    "astronomy": 85,
+    "science": 80,
+    "technology": 80,
+    "world news": 10
+  },
+  "priority_override_score": 200,
+  "priority_override_max_age_seconds": 14400,
+  "priority_override_patterns": [
+    "\\bbreaking\\b",
+    "\\b(major|powerful) earthquake\\b",
+    "\\btsunami (warning|alert)\\b",
+    "\\b(declares?|declaration of) war\\b",
+    "\\bnuclear (attack|strike|detonation|accident)\\b",
+    "\\bpandemic (declared|declaration)\\b",
+    "\\bceasefire\\b",
+    "\\bstate of emergency\\b",
+    "\\b(mass|school) shooting\\b",
+    "\\b(hundreds|thousands) (of people )?(dead|killed)\\b"
+  ],
+  "day_schedule": {
+    "enabled": true,
+    "timezone": "America/New_York",
+    "periods": {
+      "morning": {
+        "start": "05:00",
+        "end": "10:00",
+        "music_folder": "/pirateradio/morning",
+        "news_play_interval_seconds": 1200,
+        "weather_play_interval_seconds": 1200,
+        "news_refresh_interval_seconds": 10800,
+        "weather_refresh_interval_seconds": 10800,
+        "transition_folder": "/pirateradio/announce/morning"
+      },
+      "day": {
+        "start": "10:00",
+        "end": "17:00",
+        "music_folder": "/pirateradio/day",
+        "news_play_interval_seconds": 1200,
+        "weather_play_interval_seconds": 1200,
+        "news_refresh_interval_seconds": 10800,
+        "weather_refresh_interval_seconds": 10800,
+        "transition_folder": "/pirateradio/announce/day"
+      },
+      "evening": {
+        "start": "17:00",
+        "end": "19:00",
+        "music_folder": "/pirateradio/evening",
+        "news_play_interval_seconds": 1200,
+        "weather_play_interval_seconds": 1200,
+        "news_refresh_interval_seconds": 10800,
+        "weather_refresh_interval_seconds": 10800,
+        "transition_folder": "/pirateradio/announce/evening"
+      },
+      "night": {
+        "start": "19:00",
+        "end": "05:00",
+        "music_folder": "/pirateradio/night",
+        "news_play_interval_seconds": 1200,
+        "weather_play_interval_seconds": 1200,
+        "news_refresh_interval_seconds": 10800,
+        "weather_refresh_interval_seconds": 10800,
+        "transition_folder": "/pirateradio/announce/night"
+      }
+    }
+  },
+  "text_provider": "gemini",
+  "grok_text_model": "grok-4.7",
+  "grok_max_tokens": 1536,
+  "news_candidate_limit": 12,
+  "news_target_seconds": 45,
+  "weather_target_seconds": 25,
+  "daily_connectors": true,
+  "section_prompt_limits": {
+    "news": 8,
+    "weather": 8
+  },
+  "rewrite_weather_each_refresh": true,
+  "reuse_recent_news_candidates": true,
+  "weather_generation_interval_seconds": 10800,
+  "news_story_pool": false,
+  "news_story_ttl_seconds": 86400,
+  "news_feed_interval_seconds": 10800,
+  "news_stories_per_refresh": 12,
+  "news_story_pool_limit": 96,
+  "news_story_history_limit": 192,
+  "news_budget_aware": true
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Check Pirate Radio bulletin freshness every ten minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitInactiveSec=10min
+RandomizedDelaySec=30s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

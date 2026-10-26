@@ -1,0 +1,23 @@
+[Unit]
+Description=Generate cached internet bulletins for Pirate Radio
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=njm
+Group=njm
+Environment=PYTHONPATH=/usr/local/lib/piradio
+EnvironmentFile=-/etc/piradio-internet/credentials.env
+ExecStart=/usr/bin/python3 -m internet.worker refresh
+StateDirectory=piradio-internet
+StateDirectoryMode=0755
+UMask=0022
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/piradio-internet
+MemoryMax=128M
+CPUQuota=50%
+TimeoutStartSec=5min

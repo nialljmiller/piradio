@@ -1,0 +1,18 @@
+[Unit]
+Description=Import missing Macroblank and slowerpace full releases into pirate radio
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=/pirateradio
+
+[Service]
+Type=simple
+ExecStart=/home/njm/.local/share/piradio-downloader/bin/python /home/njm/piradio/scripts/yt-mp3.py --batch /home/njm/piradio/reports/album-import-filtered.csv --folder main --energy 30 --organics 50 --state /var/lib/piradio-download/batch-progress.json
+Environment=PYTHONUNBUFFERED=1
+Nice=15
+IOSchedulingClass=idle
+CPUQuota=100%
+MemoryMax=256M
+TimeoutStopSec=30
+KillMode=control-group
+StandardOutput=journal
+StandardError=journal

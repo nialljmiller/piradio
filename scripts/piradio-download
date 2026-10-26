@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /home/njm/.local/share/piradio-downloader/bin/python /home/njm/piradio/scripts/yt-mp3.py "$@"
